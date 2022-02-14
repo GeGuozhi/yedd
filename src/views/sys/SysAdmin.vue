@@ -83,6 +83,7 @@ export default {
     hidePop(admin) {
       let flag = false;
       let roles = [];
+
       Object.assign(roles, admin.roles);
       let selectRoles = this.selectRoles;
       if (roles.length != selectRoles.length) {
