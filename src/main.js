@@ -13,7 +13,7 @@ import {deleteRequest} from "@/utils/api";
 import {initMenu} from "@/utils/menus";
 
 Vue.config.productionTip = false
-Vue.use(ElementUI,{size:'small'});
+Vue.use(ElementUI, {size: 'small'});
 
 Vue.prototype.postRequest = postRequest;
 Vue.prototype.putRequest = putRequest;
@@ -26,20 +26,22 @@ router.beforeEach((to, from, next) => {
         if (!window.sessionStorage.getItem('user')) {
             getRequest('/admin/info').then(resp => {
                 if (resp) {
+                    //存入用户信息
                     window.sessionStorage.setItem('user', JSON.stringify(resp));
+                    store.commit('INIT_ADMIN',resp);
                     next();
-                }else{
+                } else {
                     next();
                 }
             })
-        }else{
+        } else {
             next();
         }
     } else {
-        if(to.path == '/'){
+        if (to.path == '/') {
             next();
-        }else{
-            next('/?redirect='+to.path);
+        } else {
+            next('/?redirect=' + to.path);
         }
     }
 })

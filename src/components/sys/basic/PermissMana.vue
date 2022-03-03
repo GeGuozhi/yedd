@@ -61,7 +61,7 @@ export default {
     this.initRoles();
   },
   methods: {
-    doDeleteRole(role){
+    doDeleteRole(role) {
       this.$confirm('此操作将永久删除[' + role.nameZh + '], 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
@@ -81,7 +81,7 @@ export default {
     },
     doAddRole() {
       if (this.role.nameZh && this.role.name) {
-        this.postRequest('/system/basic/permiss/addRole',this.role).then(resp => {
+        this.postRequest('/system/basic/permiss/addRole', this.role).then(resp => {
           if (resp) {
             this.initRoles();
             this.role.name = '';
@@ -108,15 +108,18 @@ export default {
       })
     },
     change(rid) {
+      this.selectMenus = [];
       this.initAllMenus();
       this.initSelectedMenus(rid);
     },
     initSelectedMenus(rid) {
-      this.getRequest('/system/basic/permiss/mid/' + rid).then(resp => {
-        if (resp) {
-          this.selectMenus = resp;
-        }
-      })
+      if (rid) {
+        this.getRequest('/system/basic/permiss/mid/' + rid).then(resp => {
+          if (resp) {
+            this.selectMenus = resp;
+          }
+        })
+      }
     },
     initAllMenus() {
       this.getRequest('/system/basic/permiss/menu').then(resp => {

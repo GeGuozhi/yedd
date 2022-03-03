@@ -2,18 +2,25 @@
   <div>
     <el-container>
       <el-header class="homeHeader">
-        <div class="title">云E办</div>
-        <el-dropdown class="userInfo" @command="handleCommand">
+        <div class="title">OA系统</div>
+        <div>
+          <el-button icon="el-icon-bell"
+                     type="text"
+                     size="normal"
+                     @click="goChat"
+                     style="margin-right: 8px;color: black"></el-button>
+
+          <el-dropdown class="userInfo" @command="handleCommand">
           <span class="el-dropdown-link">
             {{ user.name }}<i><img :src="user.userFace"></i>
           </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
-            <el-dropdown-item command="setting">设置</el-dropdown-item>
-            <el-dropdown-item command="logout">注销登陆</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-
+            <el-dropdown-menu slot="dropdown">
+              <el-dropdown-item command="userinfo">个人中心</el-dropdown-item>
+              <el-dropdown-item command="setting">设置</el-dropdown-item>
+              <el-dropdown-item command="logout">注销登陆</el-dropdown-item>
+            </el-dropdown-menu>
+          </el-dropdown>
+        </div>
       </el-header>
       <el-container>
         <el-aside width="200px">
@@ -51,7 +58,7 @@
             <el-breadcrumb-item>{{ this.$router.currentRoute.name }}</el-breadcrumb-item>
           </el-breadcrumb>
           <div class="homeWelcome" v-if="this.$router.currentRoute.path=='/home'">
-            欢迎来到云E办系统
+            欢迎来到OA系统
           </div>
           <router-view class="homeRouterView"></router-view>
         </el-main>
@@ -67,10 +74,13 @@ export default {
   name: "Home.vue",
   data() {
     return {
-      user: JSON.parse(window.sessionStorage.getItem('user'))
+      // user: JSON.parse(window.sessionStorage.getItem('user'))
     }
   },
   methods: {
+    goChat() {
+      this.$router.push('/chat')
+    },
     handleCommand(command) {
       if (command === 'logout') {
 
@@ -90,6 +100,10 @@ export default {
             message: '已取消退出登录'
           });
         });
+      } else if (command === 'userinfo') {
+        this.$router.push('/userinfo')
+      } else if (command === 'setting') {
+        this.$router.push('/setting')
       }
     }
   },
@@ -97,6 +111,9 @@ export default {
     routes() {
       // return this.$router.options.routes
       return this.$store.state.routes
+    },
+    user(){
+      return this.$store.state.currentAdmin
     }
   }
 }
@@ -138,7 +155,7 @@ export default {
   padding: 50px;
 }
 
-.homeRouterView{
+.homeRouterView {
   margin-top: 17px;
 }
 

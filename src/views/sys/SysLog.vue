@@ -1,12 +1,10 @@
 <template>
-<div>
-  奖惩规则-->暂未实现
-</div>
+  <div>操作日志</div>
 </template>
 
 <script>
 export default {
-  name: "EcMana"
+  name: "SysLog"
 }
 </script>
 

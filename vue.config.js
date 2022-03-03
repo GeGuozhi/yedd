@@ -18,6 +18,12 @@ proxyObj['/']={
 
 }
 
+proxyObj['/ws']={
+    ws:false,
+    //目标地址
+    target:'ws://localhost:8081',
+}
+
 
 
 module.exports={

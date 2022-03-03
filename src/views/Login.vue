@@ -6,7 +6,7 @@
         ref="loginForm"
         :model="loginForm"
         class="loginContainer">
-      <h3>系统登录</h3>
+      <h3 class="loginTitle">OA系统</h3>
 
       <el-form-item prop="username">
         <el-input type="text" v-model="loginForm.username" placeholder="请输入用户名"></el-input>
@@ -65,16 +65,16 @@ export default {
               window.sessionStorage.setItem('tokenStr', tokenStr);
               //跳转对应页
               let path = this.$route.query.redirect;
-              this.$router.replace((path=='/'||path==undefined?'/home':path)).catch(
-                  err=>{
-                    this.$router.replace((path=='/'||path==undefined?'/home':path))
+              this.$router.replace((path == '/' || path == undefined ? '/home' : path)).catch(
+                  err => {
+                    this.$router.replace((path == '/' || path == undefined ? '/home' : path))
                   }
               );
 
               // this.$router.replace('/home').catch(err => {
               //   this.$router.replace('/home')
               // })
-            }else{
+            } else {
               this.loading = false;
             }
           });
@@ -101,9 +101,15 @@ export default {
   box-shadow: 0 0 25px #cac6;
 }
 
+.loginContainer .loginTitle {
+  font-size: 30px;
+  font-family: 华文行楷;
+  color: #409EFF;
+}
+
+
 .el-form-item__content {
   display: flex;
   align-items: center;
 }
-
 </style>

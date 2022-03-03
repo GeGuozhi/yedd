@@ -1,12 +1,12 @@
 <template>
-<div>
-  奖惩规则-->暂未实现
-</div>
+  <div>
+    人事记录统计
+  </div>
 </template>
 
 <script>
 export default {
-  name: "EcMana"
+  name: "StaRecord"
 }
 </script>
 
